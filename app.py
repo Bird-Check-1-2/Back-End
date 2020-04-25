@@ -31,5 +31,15 @@ def get_states():
     return jsonify(response)
 
 
+@app.route('/api/counties', methods=['POST'])
+def get_county_from_state():
+    data = request.get_json()
+    state = data['state']
+    counties = state_counties[state]
+    response = {
+        'counties': sorted(counties)
+    }
+    return jsonify(response)
+
 if __name__ == "__main__":
     app.run(debug=True)
