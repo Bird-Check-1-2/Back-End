@@ -12,7 +12,7 @@ import joblib
 print("Reading in labeled dataset sample...")
 print()
 
-df = pd.read_csv("C:\\Users\\ajaco\\Desktop\\repos\\noreallyimfine\\ebird-project\\data\\labelled_bird_sample.csv")
+df = pd.read_csv("C:\\Users\\ajaco\\Desktop\\repos\\Bird-Check\\Back-End\\sample\\labelled_bird_sample.csv")
 assert(df.shape == (103992, 16))
 
 # ========================================
@@ -34,9 +34,9 @@ birds_list = X['name'].unique().tolist()
 seasons_list = X['season'].unique().tolist()
 regions_list = X['region'].unique().tolist()
 
-joblib.dump(birds_list, 'bird_app/utils/birds_list.joblib')
-joblib.dump(seasons_list, 'bird_app/utils/seasons_list.joblib')
-joblib.dump(regions_list, 'bird_app/utils/regions_list.joblib')
+joblib.dump(birds_list, 'utils/birds_list.joblib')
+joblib.dump(seasons_list, 'utils/seasons_list.joblib')
+joblib.dump(regions_list, 'utils/regions_list.joblib')
 
 # =======================================
 
@@ -85,5 +85,5 @@ print("\n\n")
 print("Saving encoder and model... ")
 print()
 
-joblib.dump(model, "bird_app/utils/rf.joblib")
-joblib.dump(encoder, "bird_app/utils/cat_boost.joblib")
+joblib.dump(model, "utils/rf.joblib")
+joblib.dump(encoder, "utils/cat_boost.joblib")
