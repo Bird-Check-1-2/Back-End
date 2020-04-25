@@ -36,7 +36,6 @@ regions_list = X['region'].unique().tolist()
 
 joblib.dump(birds_list, 'utils/birds_list.joblib')
 joblib.dump(seasons_list, 'utils/seasons_list.joblib')
-joblib.dump(regions_list, 'utils/regions_list.joblib')
 
 # =======================================
 
