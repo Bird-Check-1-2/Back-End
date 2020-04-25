@@ -317,7 +317,7 @@ assert(merged['target'].value_counts()[0] == merged['seas_reg_rare'].value_count
 
 print("Writing to csv...")
 print()
-merged.to_csv("data\\labelled_bird_sample.csv", index=False)
+merged.to_csv("labelled_bird_sample.csv", index=False)
 
 # ===============================================
 
