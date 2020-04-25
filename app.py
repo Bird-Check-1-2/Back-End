@@ -3,6 +3,10 @@ from joblib import load
 
 app = Flask(__name__)
 
+birds = load('utils/bird_list.joblib')
+seasons = load('utils/seasons_list.joblib')
+states = load('utils/states.joblib')
+
 @app.route('/api/birds', methods=['GET'])
 def get_birds():
     response = {
