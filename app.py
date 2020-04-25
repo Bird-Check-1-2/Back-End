@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from joblib import load
 
 app = Flask(__name__)
@@ -6,6 +6,8 @@ app = Flask(__name__)
 birds = load('utils/birds_list.joblib')
 seasons = load('utils/seasons_list.joblib')
 states = load('utils/states.joblib')
+
+state_counties = load('utils/state_counties.joblib')
 
 @app.route('/api/birds', methods=['GET'])
 def get_birds():

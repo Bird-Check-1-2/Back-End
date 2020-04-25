@@ -246,6 +246,17 @@ assert('Autauga,Alabama' in regions['county_state'].values)
 states = regions['State'].unique().tolist()
 joblib.dump(states, 'utils/states.joblib')
 
+state_counties = {}
+for idx, row in regions.iterrows():
+    state = row['State']
+    county = row['CountyName']
+
+    if state not in state_counties:
+        state_counties[state] = [county]
+    elif county not in state_counties[state]:
+        state_counties[state].append(county)
+
+joblib.dump(state_counties, 'utils/state_counties.joblib')
 # ===============================================
 
 print("Renaming RegionName column to regions...")
