@@ -243,8 +243,8 @@ print()
 regions['county_state'] = regions['CountyName'] + "," + regions['State']
 assert('Autauga,Alabama' in regions['county_state'].values)
 
-county_state = regions['county_state'].unique().tolist()
-joblib.dump(county_state, 'utils/county_state.joblib')
+states = regions['State'].unique().tolist()
+joblib.dump(states, 'utils/states.joblib')
 
 # ===============================================
 

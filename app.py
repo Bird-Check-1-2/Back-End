@@ -10,7 +10,7 @@ states = load('utils/states.joblib')
 @app.route('/api/birds', methods=['GET'])
 def get_birds():
     response = {
-        "birds": ['A', 'list', 'of', 'birds']
+        "birds": sorted(birds)
     }
     return jsonify(response)
 
@@ -18,7 +18,7 @@ def get_birds():
 @app.route('/api/seasons', methods=['GET'])
 def get_seasons():
     response = {
-        "seasons": ['A', 'list', 'of', 'seasons']
+        "seasons": sorted(seasons)
     }
     return jsonify(response)
 
@@ -26,7 +26,7 @@ def get_seasons():
 @app.route('/api/states', methods=['GET'])
 def get_states():
     response = {
-        "states": ['A', 'list', 'of', 'states']
+        "states": sorted(states)
     }
     return jsonify(response)
 
