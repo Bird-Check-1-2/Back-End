@@ -3,7 +3,7 @@ from joblib import load
 
 app = Flask(__name__)
 
-birds = load('utils/bird_list.joblib')
+birds = load('utils/birds_list.joblib')
 seasons = load('utils/seasons_list.joblib')
 states = load('utils/states.joblib')
 
