@@ -243,6 +243,9 @@ print()
 regions['county_state'] = regions['CountyName'] + "," + regions['State']
 assert('Autauga,Alabama' in regions['county_state'].values)
 
+county_state = regions['county_state'].unique().tolist()
+joblib.dump(county_state, 'utils/county_state.joblib')
+
 # ===============================================
 
 print("Renaming RegionName column to regions...")
@@ -317,7 +320,7 @@ assert(merged['target'].value_counts()[0] == merged['seas_reg_rare'].value_count
 
 print("Writing to csv...")
 print()
-merged.to_csv("labelled_bird_sample.csv", index=False)
+merged.to_csv("sample/labelled_bird_sample.csv", index=False)
 
 # ===============================================
 
