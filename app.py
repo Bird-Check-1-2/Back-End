@@ -3,6 +3,10 @@ from boto.s3.key import Key
 from boto.s3.connection import S3Connection
 from flask import Flask, jsonify, request
 from joblib import load
+from decouple import config
+
+AWS_ACCESS_KEY_ID = config("AWSACCESSKEYID")
+AWS_SECRET_KEY = config("AWSSECRETKEY")
 
 BUCKET_NAME = 'ebird-pickle-files'
 LOCAL_PATH = '/tmp/'
@@ -16,7 +20,7 @@ REGIONS_FILE = 'counties_to_regions.joblib'
 
 app = Flask(__name__)
 
-conn = S3Connection()
+conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_KEY)
 bucket = conn.create_bucket(BUCKET_NAME)
 key_obj = Key(bucket)
 
