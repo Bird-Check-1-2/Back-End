@@ -3,7 +3,7 @@ import pandas as pd
 from flask import Flask, jsonify, request
 from joblib import load
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 encoder = load('utils/cat_boost.joblib')
 model = load('utils/rf.joblib')
@@ -80,4 +80,4 @@ def predict_bird():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    application.run(debug=True)
