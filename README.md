@@ -5,3 +5,9 @@ Repository for database and back end api code
 `/api/birds`
 
 `/api/seasons`
+
+`/api/states`
+
+`/api/counties`
+
+`/api/results`
