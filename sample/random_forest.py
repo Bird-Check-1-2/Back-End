@@ -34,8 +34,8 @@ birds_list = X['name'].unique().tolist()
 seasons_list = X['season'].unique().tolist()
 regions_list = X['region'].unique().tolist()
 
-joblib.dump(birds_list, 'utils/birds_list.joblib')
-joblib.dump(seasons_list, 'utils/seasons_list.joblib')
+pickle.dump(birds_list, 'utils/birds_list.p')
+pickle.dump(seasons_list, 'utils/seasons_list.p')
 
 # =======================================
 
@@ -84,5 +84,5 @@ print("\n\n")
 print("Saving encoder and model... ")
 print()
 
-joblib.dump(model, "utils/rf.joblib")
-joblib.dump(encoder, "utils/cat_boost.joblib")
+pickle.dump(model, "utils/rf.p")
+pickle.dump(encoder, "utils/cat_boost.p")

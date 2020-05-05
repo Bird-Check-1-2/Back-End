@@ -1,5 +1,5 @@
 import warnings
-import joblib
+import pickle
 import pandas as pd
 warnings.filterwarnings("ignore")
 
@@ -131,6 +131,7 @@ def season_from_month(x):
         return 'Fall'
 
 
+
 us_birds['season'] = us_birds['month'].apply(season_from_month)
 assert(us_birds.season.value_counts()['Spring'] == 39395)
 
@@ -244,7 +245,7 @@ regions['county_state'] = regions['CountyName'] + "," + regions['State']
 assert('Autauga,Alabama' in regions['county_state'].values)
 
 states = regions['State'].unique().tolist()
-joblib.dump(states, 'utils/states.joblib')
+pickle.dump(states, 'utils/states.p')
 
 state_counties = {}
 for idx, row in regions.iterrows():
@@ -256,7 +257,7 @@ for idx, row in regions.iterrows():
     elif county not in state_counties[state]:
         state_counties[state].append(county)
 
-joblib.dump(state_counties, 'utils/state_counties.joblib')
+pickle.dump(state_counties, 'utils/state_counties.p')
 # ===============================================
 
 print("Renaming RegionName column to regions...")
@@ -277,7 +278,7 @@ for idx, row in c2r.iterrows():
     region = row['region']
     cs_to_region[cs] = region
 
-joblib.dump(cs_to_region, "utils/counties_to_regions.joblib")
+pickle.dump(cs_to_region, "utils/counties_to_regions.p")
 
 # ============================================
 
