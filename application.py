@@ -5,15 +5,15 @@ from pickle import load
 
 application = Flask(__name__)
 
-encoder = load('utils/cat_boost.joblib')
-model = load('utils/rf.joblib')
+encoder = load('utils/cat_boost.p')
+model = load('utils/rf.p')
 
-birds = load('utils/birds_list.joblib')
-seasons = load('utils/seasons_list.joblib')
-states = load('utils/states.joblib')
+birds = load('utils/birds_list.p')
+seasons = load('utils/seasons_list.p')
+states = load('utils/states.p')
 
-state_counties = load('utils/state_counties.joblib')
-cs2r = load('utils/counties_to_regions.joblib')
+state_counties = load('utils/state_counties.p')
+cs2r = load('utils/counties_to_regions.p')
 
 labels = {0: "Common", 1:"Uncommon", 2:"Rare"}
 
