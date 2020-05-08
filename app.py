@@ -3,7 +3,7 @@ import pandas as pd
 from flask import Flask, jsonify, request
 from joblib import load
 
-application = Flask(__name__)
+app = Flask(__name__)
 
 encoder = load('utils/cat_boost.p')
 model = load('utils/rf.p')
