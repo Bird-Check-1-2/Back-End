@@ -12,7 +12,7 @@ import numpy as np
 print("Reading in labeled dataset sample...")
 print()
 
-df = pd.read_csv("C:\\Users\\ajaco\\Desktop\\repos\\Bird-Check\\Back-End\\sample\\labelled_bird_sample.csv")
+df = pd.read_csv("sample/labelled_bird_sample.csv")
 assert(df.shape == (103992, 16))
 
 # ========================================
