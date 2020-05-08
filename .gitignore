@@ -131,3 +131,4 @@ dmypy.json
 # Data Filetypes to ignore
 *.csv
 *.joblib
+*.xlsx
