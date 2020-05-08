@@ -13,7 +13,7 @@ seasons = load('utils/seasons_list.p')
 states = load('utils/states.p')
 
 state_counties = load('utils/state_counties.p')
-cs2r = load('utils/counties_to_regions.p')
+cs2r = load('utils/counties_to_regions.joblib')
 
 labels = {0: "Common", 1:"Uncommon", 2:"Rare"}
 
