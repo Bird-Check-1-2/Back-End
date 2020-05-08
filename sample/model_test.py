@@ -1,6 +1,6 @@
 import pandas as pd
-import pickle
 
+from joblib import load
 from sklearn.metrics import accuracy_score
 
 
@@ -156,8 +156,8 @@ label_dict = {"Common": 0, "Uncommon": 1, "Rare": 2}
 merged['target'] = merged['seas_reg_rare'].map(label_dict)
 
 # Run through model
-model = pickle.load("rf.joblib")
-encoder = pickle.load("cat_boost.joblib")
+model = load("rf.joblib")
+encoder = load("cat_boost.joblib")
 
 features = ['name', 'season', 'RegionName']
 target = 'target'

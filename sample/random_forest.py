@@ -1,11 +1,11 @@
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+from joblib import dump
 
 import category_encoders as ce
 import pandas as pd
 import numpy as np
-import pickle
 
 # ======================================
 
@@ -34,8 +34,8 @@ birds_list = X['name'].unique().tolist()
 seasons_list = X['season'].unique().tolist()
 regions_list = X['region'].unique().tolist()
 
-pickle.dump(birds_list, 'utils/birds_list.p')
-pickle.dump(seasons_list, 'utils/seasons_list.p')
+dump(birds_list, 'utils/birds_list.p')
+dump(seasons_list, 'utils/seasons_list.p')
 
 # =======================================
 
@@ -84,5 +84,5 @@ print("\n\n")
 print("Saving encoder and model... ")
 print()
 
-pickle.dump(model, "utils/rf.p")
-pickle.dump(encoder, "utils/cat_boost.p")
+dump(model, "utils/rf.p")
+dump(encoder, "utils/cat_boost.p")
