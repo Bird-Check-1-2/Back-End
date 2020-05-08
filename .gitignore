@@ -132,3 +132,7 @@ dmypy.json
 *.csv
 *.joblib
 *.xlsx
+
+# Ignore pickled files due to size of model
+*.p
+
