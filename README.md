@@ -2,7 +2,12 @@
 Repository for database and back end api code
 
 ## Endpoints
-`/api/birds`
+`/api/birds
+
+Method: GET
+
+Response: {'birds': <List of birds>`
+
 
 `/api/seasons`
 
