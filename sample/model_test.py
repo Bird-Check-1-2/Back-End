@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score
 
 
 # Get 50,000 new instances from dataset
-df = pd.read_csv("C:\\Users\\ajaco\\Desktop\\repos\\noreallyimfine\\ebird-project\\data\\ebd_relJan-2020.txt",
+df = pd.read_csv("bird_data.csv",
                  sep='\t',
                  skiprows=lambda x: x in range(1, 200001),
                  nrows=50000,
@@ -72,7 +72,7 @@ us_birds['county_state'] = us_birds['county'] + us_birds['state']
 
 
 # Read in regions file
-regions = pd.read_excel("C:\\Users\\ajaco\\Desktop\\repos\\noreallyimfine\\ebird-project\\data\\URAmericaMapCountyList.xlsx",
+regions = pd.read_excel("URAmericaMapCountyList.xlsx",
                         skiprows=3,
                         usecols=['State', 'CountyName', 'RegionName'])
 
@@ -155,11 +155,13 @@ merged['seas_reg_rare'] = merged.apply(
 label_dict = {"Common": 0, "Uncommon": 1, "Rare": 2}
 merged['target'] = merged['seas_reg_rare'].map(label_dict)
 
+# Rename RegionName column to match model
+merged = merged.rename(columns={'RegionName': 'region'})
 # Run through model
-model = load("rf.joblib")
-encoder = load("cat_boost.joblib")
+model = load("utils/rf.p")
+encoder = load("utils/cat_boost.p")
 
-features = ['name', 'season', 'RegionName']
+features = ['name', 'season', 'region']
 target = 'target'
 
 X = merged[features]
@@ -168,6 +170,11 @@ y = merged[target]
 X = encoder.transform(X)
 
 preds = model.predict(X)
+
+
+# merged['preds'] = preds
+
+# print(merged[['target', 'preds']])
 
 print("\n\n")
 print("=====================\n")
