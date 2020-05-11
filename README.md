@@ -37,4 +37,17 @@ Arguments: {'state': <state>}
 Response: {'counties': <List of counties in that state>}
 ```
 
-`/api/results`
+```
+Endpoint: /api/results
+
+Method: POST
+
+Arguments: {
+    "bird": <bird>,
+    "season": <season>,
+    "state": <state>,
+    "county: <county>
+}
+
+Response: {"prediction": <predicted rarity label>}
+```
