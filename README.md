@@ -16,7 +16,7 @@ Endpoint: /api/seasons
 
 Method: GET
 
-Response: {'seasons': <List of seasons>}
+Response: {'seasons': ['Summer', 'Winter', 'Fall', 'Spring']}
 ```
 
 ```
@@ -34,7 +34,7 @@ Method: POST
 
 Arguments: {'state': <state>}
 
-Response: {'counties': <List of counties in that state>}
+Response: {'counties': ['Lake', 'Cuyahoga', ...]}
 ```
 
 ```
