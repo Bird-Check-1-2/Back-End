@@ -172,9 +172,12 @@ X = encoder.transform(X)
 preds = model.predict(X)
 
 
-# merged['preds'] = preds
+merged['preds'] = preds
 
-# print(merged[['target', 'preds']])
+print(merged[['target', 'preds']])
+
+print(merged['target'].value_counts())
+print(merged['preds'].value_counts())
 
 print("\n\n")
 print("=====================\n")
