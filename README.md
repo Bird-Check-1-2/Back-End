@@ -7,11 +7,17 @@ Repository for database and back end api code
 
 Method: GET
 
-Response: {'birds': <List of birds>
+Response: {'birds': <List of birds>}
 ```
 
 
-`/api/seasons`
+```
+/api/seasons
+
+Method: GET
+
+Response: {'seasons': <List of seasons>}
+```
 
 `/api/states`
 
