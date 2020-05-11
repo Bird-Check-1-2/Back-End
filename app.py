@@ -55,6 +55,10 @@ def get_county_from_state():
 @app.route('/api/results', methods=['POST'])
 def predict_bird():
     data = request.get_json()
+
+    if not all ['bird', 'season', 'state', 'county'] in data:
+        message = "Invalid keys. Need 'bird', 'season', 'state', and 'county'"
+        return message, 400
     
     bird = data['bird']
     season = data['season']
