@@ -3,7 +3,7 @@ Repository for database and back end api code
 
 ## Endpoints
 ```
-/api/birds
+Endpoint: /api/birds
 
 Method: GET
 
@@ -12,15 +12,29 @@ Response: {'birds': <List of birds>}
 
 
 ```
-/api/seasons
+Endpoint: /api/seasons
 
 Method: GET
 
 Response: {'seasons': <List of seasons>}
 ```
 
-`/api/states`
+```
+Endpoint: /api/states
 
-`/api/counties`
+Method: GET
+
+Response: {'states': <List of states>}
+```
+
+```
+Endpoint: /api/counties
+
+Method: POST
+
+Arguments: {'state': <state>}
+
+Response: {'counties': <List of counties in that state>}
+```
 
 `/api/results`
