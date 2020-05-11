@@ -63,7 +63,7 @@ assert(y_test.shape == (20799,))
 print("Training Random Forest Classifier...")
 print()
 
-model = RandomForestClassifier(n_estimators=500, max_depth=None, random_state=42)
+model = RandomForestClassifier(n_estimators=500, max_depth=9, random_state=42)
 model.fit(X_train, y_train)
 
 # =====================================
