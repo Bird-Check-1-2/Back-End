@@ -13,7 +13,8 @@ print("Reading in labeled dataset sample...")
 print()
 
 df = pd.read_csv("sample/labelled_bird_sample.csv")
-assert(df.shape == (103992, 16))
+print("Rows in dataset:", df.shape[0])
+# assert(df.shape == (103992, 16))
 
 # ========================================
 
@@ -26,8 +27,9 @@ target = 'target'
 X = df[features]
 y = df[target]
 
-assert(X.shape == (103992, 3))
-assert(y.shape == (103992,))
+print("Feature columns:", X.shape[1])
+# assert(X.shape == (103992, 3))
+# assert(y.shape == (103992,))
 
 # Saving list of birds, seasons, and regions
 birds_list = X['name'].unique().tolist()
@@ -53,10 +55,13 @@ print()
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-assert(X_train.shape == (83193, 3))
-assert(X_test.shape == (20799, 3))
-assert(y_train.shape == (83193,))
-assert(y_test.shape == (20799,))
+print("Observations in train set:", X_train.shape[0])
+print("Observations in test set:", X_test.shape[0])
+
+# assert(X_train.shape == (83193, 3))
+# assert(X_test.shape == (20799, 3))
+# assert(y_train.shape == (83193,))
+# assert(y_test.shape == (20799,))
 
 # =====================================
 

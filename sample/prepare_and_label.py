@@ -32,7 +32,7 @@ print("Reading in bird csv...")
 print()
 df = pd.read_csv("bird_data.csv",
                  sep='\t',
-                 nrows=200000,
+                 nrows=500000,
                  usecols=['COMMON NAME', 'COUNTRY', 'STATE', 'COUNTY',
                           'LATITUDE', 'LONGITUDE', 'OBSERVATION DATE',
                           'OBSERVATION COUNT'])
@@ -332,7 +332,7 @@ merged['target'] = merged['seas_reg_rare'].map(label_dict)
 
 # =============================================
 
-print("Writing to csv...")
+print("Writing to 'labelled_bird_sample.csv'...")
 print()
 merged.to_csv("sample/labelled_bird_sample.csv", index=False)
 
