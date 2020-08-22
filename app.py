@@ -2,6 +2,9 @@ from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app['SECRET_KEY'] = 'secret'
+app['SQL_DATABASE_URI'] = ''
+db = SQLAlchemy(app)
 
 birds = load('utils/birds_list.p')
 seasons = load('utils/seasons_list.p')
