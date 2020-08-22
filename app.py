@@ -5,9 +5,6 @@ from joblib import load
 
 app = Flask(__name__)
 
-encoder = load('utils/cat_boost.p')
-model = load('utils/rf.p')
-
 birds = load('utils/birds_list.p')
 seasons = load('utils/seasons_list.p')
 states = load('utils/states.p')
