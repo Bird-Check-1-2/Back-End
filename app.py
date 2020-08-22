@@ -1,7 +1,5 @@
-import pandas as pd
-
 from flask import Flask, jsonify, request
-from joblib import load
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
