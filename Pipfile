@@ -10,7 +10,9 @@ flask = "*"
 flask-sqlalchemy = "*"
 flake8 = "*"
 python-dotenv = "*"
-psycopg2 = "*"
+psycopg2-binary = "*"
+joblib = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.8"
