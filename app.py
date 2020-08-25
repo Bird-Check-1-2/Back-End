@@ -1,6 +1,7 @@
 import os
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
+from models import Bird, County, State, Region, Season, Lookup
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -16,71 +17,75 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql+psycopg2://{pg_user}:{pg_pa
 db = SQLAlchemy(app)
 
 
-# @app.route('/api/birds', methods=['GET'])
-# def get_birds():
-#     response = {
-#         "birds": sorted(birds)
-#     }
-#     return jsonify(response)
+@app.route('/api/birds', methods=['GET'])
+def get_birds():
+    birds = Bird.query.all()
+    response = {
+        "birds": [bird.name for bird in birds]
+    }
+    return jsonify(response)
 
 
-# @app.route('/api/seasons', methods=['GET'])
-# def get_seasons():
-#     response = {
-#         "seasons": sorted(seasons)
-#     }
-#     return jsonify(response)
+@app.route('/api/seasons', methods=['GET'])
+def get_seasons():
+    seasons = Season.query.all()
+    response = {
+        "seasons": [season.name for season in seasons]
+    }
+    return jsonify(response)
 
 
-# @app.route('/api/states', methods=['GET'])
-# def get_states():
-#     response = {
-#         "states": sorted(states)
-#     }
-#     return jsonify(response)
+@app.route('/api/states', methods=['GET'])
+def get_states():
+    states = State.query.all()
+    response = {
+        "states": [state.name for state in states]
+    }
+    return jsonify(response)
 
 
-# @app.route('/api/counties', methods=['POST'])
-# def get_county_from_state():
-#     data = request.get_json()
-#     state = data['state']
-#     counties = state_counties[state]
-#     response = {
-#         'counties': sorted(counties)
-#     }
-#     return jsonify(response)
+@app.route('/api/counties', methods=['POST'])
+def get_county_from_state():
+    data = request.get_json()
+    state = data['state']
+    state_id = State.query.filter_by(name=state).first()
+    counties = County.query.filter_by(state_id=state_id).all()
+    response = {
+        'counties': [county.county_name for county in counties]
+    }
+    return jsonify(response)
 
 
-# @app.route('/api/results', methods=['POST'])
-# def predict_bird():
-#     data = request.get_json()
+@app.route('/api/results', methods=['POST'])
+def predict_bird():
+    data = request.get_json()
 
-#     # needed_keys = ['bird', 'season', 'state', 'county']
-#     # if not all(needed_keys) in data.keys():
-#     #     message = "Invalid keys. Need 'bird', 'season', 'state', and 'county'"
-#     #     return message, 400
+    # needed_keys = ['bird', 'season', 'state', 'county']
+    # if not all(needed_keys) in data.keys():
+    #     message = "Invalid keys. Need 'bird', 'season', 'state', and 'county'"
+    #     return message, 400
     
-#     bird = data['bird']
-#     season = data['season']
+    bird = data['bird']
+    season = data['season']
 
-#     county_state = data['county'] + ',' + data['state']
-#     region = cs2r[county_state]
+    county_state = data['county'] + ',' + data['state']
+    region = cs2r[county_state]
 
-#     # encode features
-#     X = pd.DataFrame({
-#         'name': [bird],
-#         'season': [season],
-#         'region': [region]
-#     })
-#     X_encoded = encoder.transform(X)
-#     # get prediction
-#     pred = model.predict(X_encoded)
-#     label = labels[pred[0]]
+    # encode features
+    X = pd.DataFrame({
+        'name': [bird],
+        'season': [season],
+        'region': [region]
+    })
+    X_encoded = encoder.transform(X)
+    # get prediction
+    pred = model.predict(X_encoded)
+    label = labels[pred[0]]
 
-#     response = {
-#         'prediction': label
-#     }
-#     return jsonify(response)
+    response = {
+        'prediction': label
+    }
+    return jsonify(response)
 
-# if __name__ == "__main__":
-#     app.run(host="0.0.0.0")
+if __name__ == "__main__":
+    app.run(host="0.0.0.0")
