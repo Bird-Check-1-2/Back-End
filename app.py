@@ -1,7 +1,6 @@
 import os
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
-from models import Bird, County, State, Region, Season, Lookup
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -16,6 +15,7 @@ app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql+psycopg2://{pg_user}:{pg_pass}@{db_url}/{db_name}"
 db = SQLAlchemy(app)
 
+from models import Bird, County, State, Region, Season, Lookup
 
 @app.route('/api/birds', methods=['GET'])
 def get_birds():
@@ -56,36 +56,37 @@ def get_county_from_state():
     return jsonify(response)
 
 
+def lookup_result(bird, season, region):
+    # get pct of total from lookup table
+    lookup = Lookup.query.filter_by(region=region, season=season, bird=bird).first()
+
+    # if elif to decide string output
+    if lookup.pct_of_total > 0.005:
+        return "Common"
+    elif lookup.pct_of_total > 0.001:
+        return "Uncommon"
+    else:
+        return "Rare"
+
+
 @app.route('/api/results', methods=['POST'])
 def predict_bird():
     data = request.get_json()
 
-    # needed_keys = ['bird', 'season', 'state', 'county']
-    # if not all(needed_keys) in data.keys():
-    #     message = "Invalid keys. Need 'bird', 'season', 'state', and 'county'"
-    #     return message, 400
-    
     bird = data['bird']
     season = data['season']
+    
+    state = State.query.filter_by(name=data['state']).first()
+    county = County.query.filter_by(county_name=data['county'], state_id=state).first()
+    region = Region.query.filter_by(county_id=county).first()
 
-    county_state = data['county'] + ',' + data['state']
-    region = cs2r[county_state]
-
-    # encode features
-    X = pd.DataFrame({
-        'name': [bird],
-        'season': [season],
-        'region': [region]
-    })
-    X_encoded = encoder.transform(X)
-    # get prediction
-    pred = model.predict(X_encoded)
-    label = labels[pred[0]]
+    result = lookup_result(bird, season, region)
 
     response = {
-        'prediction': label
+        'result': result
     }
     return jsonify(response)
 
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(debug=True)
