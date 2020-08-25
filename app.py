@@ -6,7 +6,7 @@ load_dotenv()
 
 db_url = os.getenv("DATABASE_URL")
 pg_user = os.getenv("DATABASE_USER")
-pg_pass = os.getnev("DATABASE_PW")
+pg_pass = os.getenv("DATABASE_PW")
 db_name = os.getenv("DATABASE_NAME")
 
 
