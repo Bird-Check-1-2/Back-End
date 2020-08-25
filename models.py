@@ -25,7 +25,7 @@ class County(db.Model):
     region = db.relationship('Region', backref='region_county', lazy=True)
 
     def __repr__(self):
-        return f"<County {self.id}: {self.county_name}, {self.state_id.name}>"
+        return f"<County {self.id}: {self.county_name}, {self.county_state.name}>"
 
 
 class Region(db.Model):
