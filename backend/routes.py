@@ -4,7 +4,7 @@ from backend.models import Bird, County, State, Region, Season, Lookup
 
 
 @app.route('/api/birds', methods=['GET'])
-def get_birds():
+def birds():
     birds = Bird.query.all()
     response = {
         "birds": [bird.name for bird in birds]
@@ -13,7 +13,7 @@ def get_birds():
 
 
 @app.route('/api/seasons', methods=['GET'])
-def get_seasons():
+def seasons():
     seasons = Season.query.all()
     response = {
         "seasons": [season.name for season in seasons]
@@ -22,7 +22,7 @@ def get_seasons():
 
 
 @app.route('/api/states', methods=['GET'])
-def get_states():
+def states():
     states = State.query.all()
     response = {
         "states": [state.name for state in states]
@@ -31,11 +31,11 @@ def get_states():
 
 
 @app.route('/api/counties', methods=['POST'])
-def get_county_from_state():
+def counties():
     data = request.get_json()
     state = data['state']
     state_id = State.query.filter_by(name=state).first()
-    counties = County.query.filter_by(state_id=state_id).all()
+    counties = County.query.filter_by(state_id=state_id.id).all()
     response = {
         'counties': [county.county_name for county in counties]
     }
@@ -56,17 +56,17 @@ def lookup_result(bird, season, region):
 
 
 @app.route('/api/results', methods=['POST'])
-def predict_bird():
+def results():
     data = request.get_json()
 
     bird = data['bird']
     season = data['season']
-    
-    state = State.query.filter_by(name=data['state']).first()
-    county = County.query.filter_by(county_name=data['county'], state_id=state).first()
-    region = Region.query.filter_by(county_id=county).first()
 
-    result = lookup_result(bird, season, region)
+    state = State.query.filter_by(name=data['state']).first()
+    county = County.query.filter_by(county_name=data['county'], state_id=state.id).first()
+    region = Region.query.filter_by(county_id=county.id).first()
+
+    result = lookup_result(bird, season, region.region)
 
     response = {
         'result': result
