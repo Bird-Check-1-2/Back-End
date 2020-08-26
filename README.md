@@ -34,7 +34,7 @@ Method: POST
 
 Arguments: {'state': <state>}
 
-Response: {'counties': ['Lake', 'Cuyahoga', ...]}
+Response: {'counties': <List of counties in the state>}
 ```
 
 ```
@@ -49,5 +49,5 @@ Arguments: {
     "county: <county>
 }
 
-Response: {"prediction": <predicted rarity label>}
+Response: {"result": <One of ('Common', 'Uncommon', 'Rare')>}
 ```
